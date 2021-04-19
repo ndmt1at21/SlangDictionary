@@ -8,6 +8,7 @@ public class DeleteResult {
 
     public DeleteResult(String key, String value) {
         this.key = key;
+        this.values = new LinkedList<>();
 
         if (value != null)
             this.values.push(value);

@@ -28,27 +28,32 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Main.delete();
+            Main.delete();
             BTreeConfiguration config = new BTreeConfiguration(1024, 20, 20, 2);
             BTreeStore btree = new BTreeStore("./test.dat", config);
 
             ArrayList<SlangWord> arrSlangWord = TestData.readTest();
 
-            // // Insert
-            // arrSlangWord.forEach(slangWord -> {
-            // try {
-            // btree.insert(slangWord.getDefinition(), slangWord.getMean(), (a) -> {
-            // return false;
-            // });
-            // } catch (Exception e) {
-            // System.out.println(e.getMessage());
-            // }
-            // });
+            // Insert
+            arrSlangWord.forEach(slangWord -> {
+                try {
+                    btree.insert(slangWord.getDefinition(), slangWord.getMean(), (a) -> {
+                        return false;
+                    });
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            });
 
-            btree.printBTreeInfor();
+            // btree.printBTreeInfor();
             btree.printPrettyBTree();
 
-            btree.printNodeAtIndex(32);
+            // btree.printFullOverflowNode(1056L);
+            // btree.delete("6", "1", true);
+            // btree.printFullOverflowNode(1056L);
+
+            btree.delete("5", null, false);
+            btree.printDetailNode("5");
             btree.close();
 
         } catch (Exception e) {
